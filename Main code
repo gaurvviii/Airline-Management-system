@@ -1,0 +1,176 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Flight class
+class Flight {
+    private String flightNumber;
+    private String origin;
+    private String destination;
+    private String departureTime;
+
+    public Flight(String flightNumber, String origin, String destination, String departureTime) {
+        this.flightNumber = flightNumber;
+        this.origin = origin;
+        this.destination = destination;
+        this.departureTime = departureTime;
+    }
+
+    public String getFlightNumber() {
+        return flightNumber;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public String getDepartureTime() {
+        return departureTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight " + flightNumber + ": " + origin + " to " + destination + " at " + departureTime;
+    }
+}
+
+// FlightSchedule class
+class FlightSchedule {
+    private List<Flight> flights;
+
+    public FlightSchedule() {
+        this.flights = new ArrayList<>();
+    }
+
+    public void addFlight(String flightNumber, String origin, String destination, String departureTime) {
+        flights.add(new Flight(flightNumber, origin, destination, departureTime));
+    }
+
+    public Flight getFlight(String flightNumber) {
+        for (Flight flight : flights) {
+            if (flight.getFlightNumber().equals(flightNumber)) {
+                return flight;
+            }
+        }
+        return null;
+    }
+
+    public void showSchedule() {
+        System.out.println("Flight Schedule:");
+        for (Flight flight : flights) {
+            System.out.println(flight);
+        }
+    }
+}
+
+// Passenger class
+class Passenger {
+    private String name;
+    private String phoneNumber;
+    private String email;
+
+    public Passenger(String name, String phoneNumber, String email) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public String toString() {
+        return "Passenger: " + name + ", Phone: " + phoneNumber + ", Email: " + email;
+    }
+}
+
+// Ticket class
+class Ticket {
+    private Passenger passenger;
+    private Flight flight;
+
+    public Ticket(Passenger passenger, Flight flight) {
+        this.passenger = passenger;
+        this.flight = flight;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket [Passenger: " + passenger.getName() + ", Flight: " + flight.getFlightNumber() + "]";
+    }
+}
+
+// TicketReservation class
+class TicketReservation {
+    private FlightSchedule flightSchedule;
+    private List<Ticket> tickets;
+
+    public TicketReservation(FlightSchedule flightSchedule) {
+        this.flightSchedule = flightSchedule;
+        this.tickets = new ArrayList<>();
+    }
+
+    public void bookTicket(Passenger passenger, String flightNumber) {
+        Flight flight = flightSchedule.getFlight(flightNumber);
+        if (flight != null) {
+            tickets.add(new Ticket(passenger, flight));
+            System.out.println("Ticket booked for " + passenger.getName() + " on flight " + flightNumber);
+        } else {
+            System.out.println("Flight " + flightNumber + " not found.");
+        }
+    }
+
+    public void showTickets() {
+        System.out.println("Booked Tickets:");
+        for (Ticket ticket : tickets) {
+            System.out.println(ticket);
+        }
+    }
+}
+
+// Admin class
+class Admin {
+    private FlightSchedule flightSchedule;
+
+    public Admin(FlightSchedule flightSchedule) {
+        this.flightSchedule = flightSchedule;
+    }
+
+    public void addFlight(String flightNumber, String origin, String destination, String departureTime) {
+        flightSchedule.addFlight(flightNumber, origin, destination, departureTime);
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        FlightSchedule flightSchedule = new FlightSchedule();
+        TicketReservation ticketReservation = new TicketReservation(flightSchedule);
+        Admin admin = new Admin(flightSchedule);
+
+        // Sample data
+        admin.addFlight("AA101", "New York", "Los Angeles", "2024-06-01 08:00");
+        admin.addFlight("BA202", "London", "New York", "2024-06-02 09:00");
+
+        Passenger passenger1 = new Passenger("John Doe", "1234567890", "john@example.com");
+        Passenger passenger2 = new Passenger("Jane Smith", "0987654321", "jane@example.com");
+
+        ticketReservation.bookTicket(passenger1, "AA101");
+        ticketReservation.bookTicket(passenger2, "BA202");
+
+        flightSchedule.showSchedule();
+        ticketReservation.showTickets();
+    }
+}
