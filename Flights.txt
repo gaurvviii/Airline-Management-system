@@ -1,0 +1,14 @@
+                                                 WELCOME TO GRNM AIRLINES 
+                                              PLEASE REFER TO DETAILS BELOW
+S.NO    FLIGHT NAME      SOURCE      DESTINATION       TOTAL NUMBER OF SEATS   TIMINGS    NO.OF SEATS AVA.   NO.OF SEATS BOOKED 
+
+1.      GRNM(11)         DELHI       PATNA              100                    9:00AM       15                 085
+2.      GRNM(45)         MUMBAI      GOA                100                    9:10AM       45                 055
+3.      GRNM(93)         BANGLORE    ASSAM              100                    3:00PM       91                 008
+4.      GRNM(67)         CHANDIGARH  NEPAL              100                    3:00PM       24                 076
+5.      GRNM(34)         DELHI       DUBAI              150                    4:00PM       04                 146
+6.      GRNM(83)         DELHI       CHENNAI            150                    4:00PM       03                 147
+7.      GRNM(20)         BANGLORE    MUMBAI             100                    4:00PM       24                 076
+8.      GRNM(82)         CHANDIGARH  SRI-LANKA          150                    5:00PM       14                 136
+9.      GRNM(33)         DELHI       JAPAN              150                    5:00PM       16                 120
+10.     GRNM(39)         CHENNAI     DELHI              100                    7:00PM       27                 073
